@@ -9,6 +9,6 @@ namespace Domain.Contracts
     public interface IDataSeed
     {
 
-        void DataSeeding();
+        Task DataSeedAsync();
     }
 }
