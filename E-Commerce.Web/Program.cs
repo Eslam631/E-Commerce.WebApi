@@ -3,6 +3,8 @@ using Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Data.Context;
+using Persistence.Repositories;
+using Service;
 using System.Threading.Tasks;
 
 namespace E_Commerce.Web
@@ -24,6 +26,8 @@ namespace E_Commerce.Web
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IDataSeed, DataSeed>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddAutoMapper(typeof(Service.AssemblyReference).Assembly);
 
             var app = builder.Build();
 
