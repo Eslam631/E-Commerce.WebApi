@@ -5,6 +5,7 @@ using Persistence;
 using Persistence.Data.Context;
 using Persistence.Repositories;
 using Service;
+using ServiceAbstraction;
 using System.Threading.Tasks;
 
 namespace E_Commerce.Web
@@ -28,6 +29,7 @@ namespace E_Commerce.Web
             builder.Services.AddScoped<IDataSeed, DataSeed>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddAutoMapper(typeof(Service.AssemblyReference).Assembly);
+            builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
             var app = builder.Build();
 
