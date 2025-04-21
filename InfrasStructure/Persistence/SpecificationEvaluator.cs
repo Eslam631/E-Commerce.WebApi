@@ -19,7 +19,7 @@ namespace Persistence
             if(specification.Criteria is not null)
            
                 Query = Query.Where(specification.Criteria);
-            else if(specification.IncludeExpression is not null&& specification.IncludeExpression.Count>0 ) 
+           if(specification.IncludeExpression is not null&& specification.IncludeExpression.Count>0 ) 
 
                 Query = specification.IncludeExpression.Aggregate(Query, (CurrentQuery, IncludeExp) => CurrentQuery.Include(IncludeExp));
 

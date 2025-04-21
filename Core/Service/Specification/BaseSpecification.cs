@@ -11,15 +11,17 @@ namespace Service.Specification
 {
     abstract class BaseSpecification<TEntity, TKey> : ISpecification<TEntity, TKey> where TEntity : BaseEntity<TKey>
     {
-        protected BaseSpecification(Expression<Func<TEntity, bool>> criteria) {
+        protected BaseSpecification(Expression<Func<TEntity, bool>>? criteria) {
 
             Criteria = criteria;
         }
-        public Expression<Func<TEntity, bool>> Criteria { get; private set; }
+        public Expression<Func<TEntity, bool>>? Criteria { get; private set; }
 
-        List<Expression<Func<TEntity, object>>> ISpecification<TEntity, TKey>.IncludeExpression => throw new NotImplementedException();
+        public List<Expression<Func<TEntity, object>>> IncludeExpression { get; } = [];
 
-        public List<Expression<Func<TEntity, object>>> IncludeExpression = [];
+
+
+     
 
         protected void AddInclude(Expression<Func<TEntity, object>> expression) => IncludeExpression.Add(expression);
 

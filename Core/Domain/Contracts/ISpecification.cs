@@ -10,8 +10,8 @@ namespace Domain.Contracts
 {
    public interface ISpecification<TEntity,TKey> where TEntity : BaseEntity<TKey>
     {
-        public Expression<Func<TEntity,bool>> Criteria { get;  }
+        public Expression<Func<TEntity,bool>>? Criteria { get;  }
 
-        public List<Expression<Func<TEntity,object>>> IncludeExpression { get; }
+        public List<Expression<Func<TEntity, object>>> IncludeExpression { get;  } 
     }
 }
