@@ -28,11 +28,13 @@ namespace Service
             return _mapper.Map<IEnumerable<ProductType>, IEnumerable<TypeProductDto>>(Types);
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductAsync(ProductQueryParams queryParams)
+        public async Task<PaginatedResult<ProductDto>> GetAllProductAsync(ProductQueryParams queryParams)
         {
             var specification = new ProductWithBrandAndType( queryParams );
             var Products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(specification);
-          return  _mapper.Map<IEnumerable<Product>,IEnumerable< ProductDto>>(Products);
+            var Data = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(Products);
+
+            return new PaginatedResult<ProductDto>(queryParams.PageIndex,Products.Count(),0,Data);
         }
 
 
