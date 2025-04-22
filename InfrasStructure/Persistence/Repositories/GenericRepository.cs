@@ -32,7 +32,11 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity, TKey> specification)=>  await  SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(),specification).ToListAsync();
         
         public async Task<TEntity?> GetByIdAsync(ISpecification<TEntity, TKey> specification)=> await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(), specification).FirstOrDefaultAsync();
-       
+
+        public async Task<int> CountAsync(ISpecification<TEntity, TKey> specification) =>
+            await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(),specification).CountAsync();
+      
+
         #endregion
 
     }
