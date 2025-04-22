@@ -13,6 +13,8 @@ namespace Shared
 
         public ProductOptionSorting optionSorting { get; set; }
 
+        public string? SearchValue { get; set; }
+
         
     }
 }
