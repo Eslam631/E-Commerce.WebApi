@@ -21,19 +21,19 @@ namespace Service
 
              
         }
-
-        public async Task<IEnumerable<ProductDto>> GetAllProductAsync()
-        {
-            var specification = new ProductWithBrandAndType();
-            var Products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(specification);
-          return  _mapper.Map<IEnumerable<Product>,IEnumerable< ProductDto>>(Products);
-        }
-
-        public async Task<IEnumerable<TypeProductDto>> GetAllTypeAsync()
+        public async Task<IEnumerable<TypeProductDto>> GetAllTypeAsync( )
         {
             var Types = await _unitOfWork.GetRepository<ProductType, int>().GetAllAsync();
             return _mapper.Map<IEnumerable<ProductType>, IEnumerable<TypeProductDto>>(Types);
         }
+
+        public async Task<IEnumerable<ProductDto>> GetAllProductAsync(int? BrandId,int? TypeId)
+        {
+            var specification = new ProductWithBrandAndType(BrandId, TypeId);
+            var Products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(specification);
+          return  _mapper.Map<IEnumerable<Product>,IEnumerable< ProductDto>>(Products);
+        }
+
 
         public async Task<ProductDto> GetProductByIdAsync(int id)
         {
