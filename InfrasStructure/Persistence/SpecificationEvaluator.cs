@@ -12,26 +12,29 @@ namespace Persistence
 {
     internal static class SpecificationEvaluator
     {
-        public static IQueryable<TEntity> CreateQuery<TEntity,TKey>(IQueryable<TEntity> InputQuery,ISpecification<TEntity,TKey> specification) where TEntity :BaseEntity<TKey>
+        public static IQueryable<TEntity> CreateQuery<TEntity, TKey>(IQueryable<TEntity> InputQuery, ISpecification<TEntity, TKey> specification) where TEntity : BaseEntity<TKey>
         {
-            var Query=InputQuery ;
+            var Query = InputQuery;
 
-            if(specification.Criteria is not null)
-           
+            if (specification.Criteria is not null)
+
                 Query = Query.Where(specification.Criteria);
-           if(specification.IncludeExpression is not null&& specification.IncludeExpression.Count>0 ) 
+            if (specification.IncludeExpression is not null && specification.IncludeExpression.Count > 0)
 
                 Query = specification.IncludeExpression.Aggregate(Query, (CurrentQuery, IncludeExp) => CurrentQuery.Include(IncludeExp));
 
 
+            if (specification.OrderBy is not null)
+                Query = Query.OrderBy(specification.OrderBy);
+            if (specification.OrderByDescending is not null)
+                Query = Query.OrderByDescending(specification.OrderByDescending);
 
-                
-
-           
 
 
 
-                return Query;
+
+
+            return Query;
         }
     }
 }

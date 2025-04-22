@@ -17,17 +17,27 @@ namespace Service.Specification
         }
         public Expression<Func<TEntity, bool>>? Criteria { get; private set; }
 
+        #region IncludeExpression
         public List<Expression<Func<TEntity, object>>> IncludeExpression { get; } = [];
 
 
 
-     
-
         protected void AddInclude(Expression<Func<TEntity, object>> expression) => IncludeExpression.Add(expression);
 
-        
 
-        
-        
+        #endregion
+
+
+        #region SortExpression
+
+        public Expression<Func<TEntity, object>> OrderBy { get; private set; }
+
+        public Expression<Func<TEntity, object>> OrderByDescending { get; private set; }
+
+        public void AddOrderByAsec(Expression<Func<TEntity, object>> expression) => OrderBy = expression;
+        public void AddOrderByDesc(Expression<Func<TEntity, object>> expression) => OrderByDescending = expression;
+
+        #endregion
+
     }
 }
