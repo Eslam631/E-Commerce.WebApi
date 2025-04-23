@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data.Configration;
 using System;
