@@ -1,7 +1,7 @@
 ﻿using Domain.Exceptions;
 using E_Commerce.Web.ErroeModels;
 
-namespace E_Commerce.Web
+namespace E_Commerce.Web.CustomModelWares
 {
     public class CustomExceptionHandelWare
     {
