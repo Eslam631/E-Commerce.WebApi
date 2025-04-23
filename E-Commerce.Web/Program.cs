@@ -41,6 +41,9 @@ namespace E_Commerce.Web
            await ObjectDate.DataSeedAsync();
             #endregion
 
+
+            app.UseMiddleware<CustomExceptionHandelWare>();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
