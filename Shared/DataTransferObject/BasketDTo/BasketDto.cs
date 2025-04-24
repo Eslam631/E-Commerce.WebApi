@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.BasketModel
+namespace Shared.DataTransferObject.BasketDTo
 {
-    public class CustomerBasket
+    public class BasketDto
     {
         public string Id { get; set; } = default!;
 
-        public ICollection<BasketItem> Items { get; set; } = [];
+        public ICollection<BasketItemDto> Items { get; set; } = [];
     }
 }
