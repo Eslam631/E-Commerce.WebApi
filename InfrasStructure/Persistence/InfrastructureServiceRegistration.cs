@@ -1,5 +1,8 @@
 ﻿
 
+using Domain.Models.IdentityModel;
+using Microsoft.AspNetCore.Identity;
+using Persistence.IdentityDbcontext;
 using StackExchange.Redis;
 
 namespace Persistence
@@ -19,6 +22,13 @@ namespace Persistence
             {
                 Option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            Services.AddDbContext<ECommerceIdentityContext>(Option =>
+            {
+                Option.UseSqlServer(configuration.GetConnectionString("IdentityConnection"));
+            });
+
+            Services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ECommerceIdentityContext>();
 
             return Services;
         }

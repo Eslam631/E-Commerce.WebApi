@@ -10,5 +10,6 @@ namespace Domain.Contracts
     {
 
         Task DataSeedAsync();
+        Task IdentityDataSeedAsync();
     }
 }
