@@ -21,7 +21,7 @@ namespace Persistence.Repositories
 
             if (CreateOrUpdate)
             {
-              return  await GetBasketAsync(customerBasket.Id);
+              return customerBasket;
             }
             else
                 return null;
