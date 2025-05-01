@@ -11,5 +11,11 @@ namespace ServiceAbstraction
     {
         public Task<UserDto> LoginAsync(LoginDto loginDto);
         public Task<UserDto> RegisterAsync(RegisterDto registerDto);
+
+
+        public Task<bool> CheckEmailAsync(string email);
+        public Task<UserDto> GetCurrentUserAsync(string Email);
+        public Task<AddressDto> GetCurrentUserAddressAsync(string Email);
+        public Task<AddressDto> UpdateCurrentUserAddressAsync(string Email,AddressDto addressDto);
     }
 }
