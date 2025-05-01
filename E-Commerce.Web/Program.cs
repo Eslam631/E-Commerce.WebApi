@@ -31,6 +31,7 @@ namespace E_Commerce.Web
             builder.Services.AddApplicationServices();  
 
             builder.Services.AddWepApplicationService();
+            builder.Services.AddJwtService(builder.Configuration);
           
             var app = builder.Build();
 
@@ -51,8 +52,10 @@ namespace E_Commerce.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
 
             app.MapControllers();
