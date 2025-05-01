@@ -35,10 +35,19 @@ namespace E_Commerce.Web.CustomModelWares
 
         private static async Task HandelExceptionAsync(HttpContext httpContext, Exception ex)
         {
+
+
+            var Response = new ErrorToReturn()
+            {
+                StatCode = httpContext.Response.StatusCode,
+                ErrorMessage = ex.Message,
+            };
             httpContext.Response.StatusCode = ex switch
             {
 
                 NotFoundException => StatusCodes.Status404NotFound,
+                UnAuthorizedException=> StatusCodes.Status401Unauthorized,
+                BadRequestException badRequest=> GetBadRequestErrors(badRequest,Response) ,
                 _ => StatusCodes.Status500InternalServerError
             };
 
@@ -47,13 +56,14 @@ namespace E_Commerce.Web.CustomModelWares
 
 
 
-            var Response = new ErrorToReturn()
-            {
-                StatCode = httpContext.Response.StatusCode,
-                ErrorMessage = ex.Message,
-            };
 
             await httpContext.Response.WriteAsJsonAsync(Response);
+        }
+
+        private static int GetBadRequestErrors(BadRequestException badRequest, ErrorToReturn response)
+        {
+            response.Errors = badRequest.Errors;
+          return StatusCodes.Status400BadRequest;
         }
 
         private static async Task HandelNotFoundEndPointAsync(HttpContext httpContext)

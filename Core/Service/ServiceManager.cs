@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
+using Domain.Models.IdentityModel;
+using Microsoft.AspNetCore.Identity;
 using ServiceAbstraction;
 using System;
 using System.Collections.Generic;
@@ -9,12 +11,17 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class ServiceManager(IUnitOfWork _unitOfWork,IMapper _mapper,IBasketRepository basketRepository ) : IServiceManager
+    public class ServiceManager(IUnitOfWork _unitOfWork,IMapper _mapper,IBasketRepository basketRepository,UserManager<ApplicationUser> _userManager ) : IServiceManager
     {
-        private readonly Lazy<IProductService> _serviceProvider=new Lazy<IProductService>(()=>new ProductService(_unitOfWork,_mapper));
-        public IProductService ProductService => _serviceProvider.Value;
+        private readonly Lazy<IProductService> _LazyServiceProvider=new Lazy<IProductService>(()=>new ProductService(_unitOfWork,_mapper));
+       
+        private readonly Lazy<IBasketService>  _LazyBasketService = new Lazy<IBasketService>(() => new BasketService(basketRepository, _mapper));
 
-        private readonly Lazy<IBasketService>  _basketService = new Lazy<IBasketService>(() => new BasketService(basketRepository, _mapper));
-        public IBasketService BasketService => _basketService.Value;
+        private readonly Lazy<IAuthService> _LazyAuthService = new Lazy<IAuthService>(() => new AuthService(_userManager));
+        public IProductService ProductService => _LazyServiceProvider.Value;
+
+        public IBasketService BasketService => _LazyBasketService.Value;
+
+        public IAuthService AuthService => _LazyAuthService.Value;
     }
 }
