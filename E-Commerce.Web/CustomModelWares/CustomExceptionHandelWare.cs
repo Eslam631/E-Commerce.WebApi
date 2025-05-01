@@ -36,12 +36,12 @@ namespace E_Commerce.Web.CustomModelWares
         private static async Task HandelExceptionAsync(HttpContext httpContext, Exception ex)
         {
 
-
             var Response = new ErrorToReturn()
             {
-                StatCode = httpContext.Response.StatusCode,
+                
                 ErrorMessage = ex.Message,
             };
+
             httpContext.Response.StatusCode = ex switch
             {
 
@@ -54,7 +54,7 @@ namespace E_Commerce.Web.CustomModelWares
 
             //change contentType
 
-
+            Response.StatCode = httpContext.Response.StatusCode;
 
 
             await httpContext.Response.WriteAsJsonAsync(Response);

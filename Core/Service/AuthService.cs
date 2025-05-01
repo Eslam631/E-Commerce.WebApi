@@ -15,7 +15,7 @@ namespace Service
     {
         public async Task<UserDto> LoginAsync(LoginDto loginDto)
         {
-            var user = await _userManager.FindByEmailAsync(loginDto.Email) ?? throw new NotFoundEmailException(loginDto.Email); ;
+            var user = await _userManager.FindByEmailAsync(loginDto.Email) ?? throw new NotFoundEmailException(loginDto.Email); 
 
 
 
