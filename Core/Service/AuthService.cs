@@ -55,8 +55,8 @@ namespace Service
 
             if (User.Address != null) {
             
-                User.Address.FirstName=addressDto.FristName;
-                 User.Address.LastName=addressDto.FristName;
+                User.Address.FirstName=addressDto.FirstName;
+                 User.Address.LastName=addressDto.LastName;
                 User.Address.City=addressDto.City;
                 User.Address.Street=addressDto.Street;
                 User.Address.Country=addressDto.Country;
