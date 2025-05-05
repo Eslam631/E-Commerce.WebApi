@@ -15,7 +15,7 @@ namespace Domain.Models.OrderModules
 
         public OrderStatus OrderStatus { get; set; } = default!;
 
-        public OrderAddress OrderAddress { get; set; } = default!;
+        public OrderAddress Address { get; set; } = default!;
 
         public DeliveryMethod DeliveryMethod { get; set; } = default!;
         public int DeliveryMethodId {  get; set; }

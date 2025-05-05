@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Persistence
 {
     public class DataSeed(ApplicationDbContext _dbContext,  UserManager<ApplicationUser> _userManager,
-        RoleManager<IdentityRole> _roleManager,ECommerceIdentityContext _identityContext) : IDataSeed
+        RoleManager<IdentityRole> _roleManager) : IDataSeed
     {
         public async Task DataSeedAsync()
         {
@@ -59,7 +59,18 @@ namespace Persistence
                       await  _dbContext.Products.AddRangeAsync(Product);
 
                 }
-               await _dbContext.SaveChangesAsync();
+
+                if (!_dbContext.Set<DeliveryMethod>().Any())
+                {
+
+                    var DeliveryMethod = File.OpenRead(@"..\InfrasStructure\Persistence\Data\DataSeed\delivery.json");
+
+                    var Delivery = await JsonSerializer.DeserializeAsync<List<DeliveryMethod>>(DeliveryMethod);
+                    if (Delivery is not null && Delivery.Any())
+                        await _dbContext.Set<DeliveryMethod>().AddRangeAsync(Delivery);
+
+                }
+                await _dbContext.SaveChangesAsync();
             }
             catch (Exception )
             {
@@ -107,7 +118,7 @@ namespace Persistence
                 
                 
                 }
-              await  _identityContext.SaveChangesAsync();
+           
             
             }
             catch (Exception)
