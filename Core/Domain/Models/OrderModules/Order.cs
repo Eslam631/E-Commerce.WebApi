@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Models.OrderModules
+{
+   public class Order:BaseEntity<Guid>
+    {
+
+        public string UserEmail { get; set; } = default!;
+
+        public DateTimeOffset OrderDate { get; set; }=DateTimeOffset.Now;
+
+        public OrderStatus OrderStatus { get; set; } = default!;
+
+        public OrderAddress OrderAddress { get; set; } = default!;
+
+        public DeliveryMethod DeliveryMethod { get; set; } = default!;
+        public int DeliveryMethodId {  get; set; }
+
+        public ICollection<OrderItem> OrderItems { get; set; } = [];
+
+        public decimal SubTotal {  get; set; }
+
+        public decimal GetTotal() => SubTotal + DeliveryMethod.Price;
+
+
+     
+
+
+
+
+
+
+    }
+}
