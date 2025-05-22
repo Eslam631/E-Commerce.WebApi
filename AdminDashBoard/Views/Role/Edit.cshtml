@@ -1,0 +1,28 @@
+﻿@model UpdateRoleViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="mt-2 text-center">Edit Role</h1>
+
+<br/>
+
+<form class="mt-4" asp-action="Edit" method="post">
+
+    <div class="form-group mt-4">
+        
+        <label  asp-for="@Model.Name"></label>
+        <input asp-for="@Model.Name" class="form-control"/>
+        <span class="text-danger" asp-validation-for="@Model.Name"></span>
+        <div class="input-group mt-2 justify-content-center ">
+
+            <button type="submit" class="btn btn-success rounded-2">Save</button>
+
+            <a asp-action="Index" class="btn btn-outline-dark rounded-2"> Go Back</a>
+
+        </div>
+    
+    </div>
+
+</form>
+

@@ -15,7 +15,7 @@ namespace Presentation.Controllers
     {
         //Get All Product
 
-        [Authorize(Roles ="Admin")]
+        
         [HttpGet]
 
         public async Task<ActionResult<PaginatedResult<ProductDto>>> GetaAllProduct([FromQuery]ProductQueryParams productQuery)

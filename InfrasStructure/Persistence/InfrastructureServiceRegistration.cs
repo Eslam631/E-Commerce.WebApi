@@ -14,10 +14,6 @@ namespace Persistence
             Services.AddScoped<IDataSeed, DataSeed>();
             Services.AddScoped<IUnitOfWork, UnitOfWork>();
             Services.AddScoped<IBasketRepository, BasketRepository>();
-            Services.AddSingleton<IConnectionMultiplexer>( (_) =>
-            {
-              return ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnectionString"));
-            });
            Services.AddDbContext<ApplicationDbContext>(Option =>
             {
                 Option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
@@ -29,6 +25,10 @@ namespace Persistence
             });
 
             Services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ECommerceIdentityContext>();
+            Services.AddSingleton<IConnectionMultiplexer>( (_) =>
+            {
+              return ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnectionString"));
+            });
 
             return Services;
         }
