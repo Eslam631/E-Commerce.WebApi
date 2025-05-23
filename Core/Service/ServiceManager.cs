@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class ServiceManager(IUnitOfWork _unitOfWork,IMapper _mapper,IBasketRepository basketRepository,UserManager<ApplicationUser> _userManager ,IConfiguration _configuration,IMapper mapper) : IServiceManager
+    public class ServiceManager(IUnitOfWork _unitOfWork,IMapper _mapper,IBasketRepository basketRepository,UserManager<ApplicationUser> _userManager ,IConfiguration _configuration,IMapper mapper) 
     {
         private readonly Lazy<IProductService> _LazyServiceProvider=new Lazy<IProductService>(()=>new ProductService(_unitOfWork,_mapper));
        
