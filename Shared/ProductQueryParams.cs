@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shared
+﻿namespace Shared
 {
    public class ProductQueryParams
     {
@@ -15,11 +9,11 @@ namespace Shared
         public int? BrandId {  get; set; }
         public int? TypeId { get; set; }
 
-        public ProductOptionSorting optionSorting { get; set; }
+        public ProductOptionSorting Sort { get; set; }
 
-        public string? SearchValue { get; set; }
+        public string? Search { get; set; }
 
-        public int PageIndex { get; set; } = 1;
+        public int PageNumber { get; set; } = 1;
         public int pageSize=DefaultPageSize;
 
         public int PageSize {

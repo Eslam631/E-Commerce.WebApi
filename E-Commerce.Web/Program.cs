@@ -1,17 +1,6 @@
-
-using Domain.Contracts;
-using E_Commerce.Web.CustomModelWares;
 using E_Commerce.Web.Extensions;
-using E_Commerce.Web.Factories;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Persistence.Data.Context;
-using Persistence.Repositories;
 using Service;
-using ServiceAbstraction;
-using Shared.ErroeModels;
-using System.Threading.Tasks;
 
 namespace E_Commerce.Web
 {
@@ -24,6 +13,16 @@ namespace E_Commerce.Web
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddCors(option =>
+            {
+                option.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyOrigin();
+
+                });
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddSwaggerServices();
@@ -52,6 +51,8 @@ namespace E_Commerce.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCors("AllowAll");
             app.UseRouting();
 
             app.UseAuthentication();

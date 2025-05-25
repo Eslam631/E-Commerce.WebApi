@@ -14,6 +14,8 @@ namespace Persistence
             Services.AddScoped<IDataSeed, DataSeed>();
             Services.AddScoped<IUnitOfWork, UnitOfWork>();
             Services.AddScoped<IBasketRepository, BasketRepository>();
+            Services.AddScoped<ICacheRepository, CasheRepository>();
+
            Services.AddDbContext<ApplicationDbContext>(Option =>
             {
                 Option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));

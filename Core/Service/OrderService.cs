@@ -21,7 +21,7 @@ namespace Service
         public async Task<OrderToReturnDto> CreateOrderAsync(OrderDto orderDto, string Email)
         {
             //Address
-            var OrderAddress = _mapper.Map<AddressDto,OrderAddress>(orderDto.Address);
+            var OrderAddress = _mapper.Map<AddressDto,OrderAddress>(orderDto.shipToAddress);
 
 
             //OrderItems

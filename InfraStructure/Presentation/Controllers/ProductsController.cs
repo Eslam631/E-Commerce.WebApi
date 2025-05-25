@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Attribute;
 using ServiceAbstraction;
 using Shared;
 using Shared.DataTransferObject;
@@ -11,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
-    public class ProductController(IServiceManager _serviceManager) : ApiBaseController
+    public class ProductsController(IServiceManager _serviceManager) : ApiBaseController
     {
         //Get All Product
 
         
         [HttpGet]
-
+        [Cache]
         public async Task<ActionResult<PaginatedResult<ProductDto>>> GetaAllProduct([FromQuery]ProductQueryParams productQuery)
         {
             var Products = await _serviceManager.ProductService.GetAllProductAsync( productQuery);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Models.OrderModules
+﻿namespace Domain.Models.OrderModules
 {
    public class Order:BaseEntity<Guid>
     {
@@ -15,16 +9,16 @@ namespace Domain.Models.OrderModules
         }
         public Order(string userEmail, OrderAddress address, ICollection<OrderItem> orderItems, decimal subTotal, DeliveryMethod deliveryMethod)
         {
-            UserEmail = userEmail;
-            Address = address;
-            OrderItems = orderItems;
+            BuyerEmail = userEmail;
+            shipToAddress = address;
+            Items = orderItems;
             SubTotal = subTotal;
             DeliveryMethod = deliveryMethod;
         }
 
-        public string UserEmail { get; set; } = default!;
-        public OrderAddress Address { get; set; } = default!;
-        public ICollection<OrderItem> OrderItems { get; set; } = [];
+        public string BuyerEmail { get; set; } = default!;
+        public OrderAddress shipToAddress { get; set; } = default!;
+        public ICollection<OrderItem> Items { get; set; } = [];
         public decimal SubTotal {  get; set; }
         public DeliveryMethod DeliveryMethod { get; set; } = default!;
 
@@ -32,7 +26,7 @@ namespace Domain.Models.OrderModules
 
         public DateTimeOffset OrderDate { get; set; }=DateTimeOffset.Now;
 
-        public OrderStatus OrderStatus { get; set; } 
+        public OrderStatus Status { get; set; } 
 
 
         public int DeliveryMethodId {  get; set; }

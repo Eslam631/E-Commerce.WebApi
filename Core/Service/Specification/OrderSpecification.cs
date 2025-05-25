@@ -9,10 +9,10 @@ namespace Service.Specification
 {
     internal class OrderSpecification:BaseSpecification<Order,Guid>
     {
-        public OrderSpecification(string Email):base(O=>O.UserEmail==Email)
+        public OrderSpecification(string Email):base(O=>O.BuyerEmail==Email)
         {
             AddInclude(O => O.DeliveryMethod);
-            AddInclude(O=>O.Address);
+            AddInclude(O=>O.shipToAddress);
             AddOrderByDesc(O=>O.OrderDate);
             
         }
@@ -20,7 +20,7 @@ namespace Service.Specification
         public OrderSpecification(Guid id):base(O=>O.Id==id)
         {
             AddInclude(O => O.DeliveryMethod);
-            AddInclude(O => O.Address);
+            AddInclude(O => O.shipToAddress);
 
         }
     }

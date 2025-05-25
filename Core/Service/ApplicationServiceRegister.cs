@@ -32,6 +32,10 @@ namespace Service
             () => provider.GetRequiredService<IOrderService>());
 
 
+            services.AddScoped<ICacheService, CacheService>();
+
+
+
             return services;
 
 

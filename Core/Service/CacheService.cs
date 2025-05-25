@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    internal class CacheService(ICacheRepository cashRepository) : ICacheService
+    public class CacheService(ICacheRepository cashRepository) : ICacheService
     {
         public async Task<string?> GetAsync(string cashKey) =>await cashRepository.GetAsync(cashKey);
         

@@ -2,15 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceAbstraction;
 using Shared.DataTransferObject.OrderDtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
-   public class OrderController(IServiceManager _serviceManager):ApiBaseController
+   public class OrdersController(IServiceManager _serviceManager):ApiBaseController
     {
         [HttpPost]
         [Authorize]
@@ -33,7 +28,7 @@ namespace Presentation.Controllers
         
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Authorize]
 
         public async Task<ActionResult<IEnumerable<OrderToReturnDto>>> GetAllOrder()
